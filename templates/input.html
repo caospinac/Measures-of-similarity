@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Measures of similarity</title>
+    <link rel="stylesheet" href="/static/css/css.css">
+    <script type="text/javascript" src=/static/js/jquery-3.1.1.js></script>
+    <script type="text/javascript" src=/static/js/reg.js></script>
+</head>
+<body>
+    <div class="item">
+        <form action="/home" method="get" accept-charset="utf-8">
+            <input type="submit" name="" value="Home">
+        </form>
+    </div>
+    <form action="input/show" method="post" accept-charset="utf-8" target="_blank">
+        <div id="items">
+        {% for k, v in uploaded %}
+          <div class="item">
+            <a class="delete">Delete</a>
+            <input class="fieldName" type="text" name="names"
+                placeholder="Field name" value="{{k}}" required>
+            <textarea name="values" placeholder="Content">{{v}}</textarea>
+          </div>
+        {% endfor %}
+        </div>
+        <div class="item">
+            <button id="addItem" type="button">Add item or set</button>
+            <select name="inputType" hidden>
+                <option value="Numeric">Numeric</option>
+                <option value="String">String</option>
+            </select>
+            <select name="measure" required>
+                <option disabled selected value> -- select a measure type -- </option>
+            {% for measure_key, measure_label in measure_labels.items() %}
+                <option value="{{measure_key}}">{{measure_label}}</option>
+            {% endfor %}
+            </select>
+            <input type="submit" class="send" value="Submit">
+        </div>
+    </form>
+    <script type="text/javascript">
+        $(function(argument) {
+            $(".delete").click(function(e) {
+                $(this).parent().remove();
+            });
+        });
+    </script>
+</body>
+</html>

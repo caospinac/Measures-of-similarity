@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Measures of similarity</title>
+    <script type="text/javascript" src=/static/js/jquery-3.1.1.js></script>
+    <script type="text/javascript" src=/static/js/reg.js></script>
+    <link rel="stylesheet" href="/static/css/css.css">
+</head>
+<body>
+    <div class="item">
+        <form action="/home" method="get" accept-charset="utf-8">
+            <input type="submit" name="" value="Home">
+        </form>
+    </div>
+    <div class="item view">
+        <table clas>
+            <caption>{{ measure_type }}</caption>
+            <thead>
+                <tr>
+                    <th></th>
+                    {% for key in keys %}
+                    <th>{{ key }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for sj, row in matrix %}
+                <tr>
+                    <td>{{ sj }}</td>
+                    {% for cel in row %}
+                    <td>{{ cel }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="item">
+        <a href="/static/files/generated.xlsx" download="measures.xlsx">
+            <img border="0" src="/static/images/xlsx.png" alt="xlsx" width="54" height="54">
+        </a>
+    </div>
+</body>
+</html>
